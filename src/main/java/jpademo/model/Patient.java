@@ -6,16 +6,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "patient")
+@Entity(name = "patient")
 public class Patient {
+
+    //IDENTITY generation type
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patient_id")
     private Long id;
 
@@ -26,6 +27,6 @@ public class Patient {
     private Date dateOfBirth;
 
     @OneToMany(mappedBy = "patient",
-    cascade = CascadeType.ALL)
-    private Set<Test> tests;
+            cascade = CascadeType.ALL)
+    private List<Test> tests;
 }

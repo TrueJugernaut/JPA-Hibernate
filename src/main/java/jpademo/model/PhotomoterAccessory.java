@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "photometr_accessory")
 public class PhotomoterAccessory extends Accessory {
 
     @Column(name = "material")

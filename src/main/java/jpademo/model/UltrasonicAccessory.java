@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "ultrasonic_accessory")
 public class UltrasonicAccessory extends Accessory {
 
     @Column(name = "radius")

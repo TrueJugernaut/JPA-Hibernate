@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "blood_test")
 public class BloodTest extends Test {
 
     @Column(name = "blood_cells_level")

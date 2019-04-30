@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "skin_test")
 public class SkinTest extends Test {
 
     @Column(name = "skin_type")

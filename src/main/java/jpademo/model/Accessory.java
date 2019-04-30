@@ -6,11 +6,15 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/*
+ * Use TABLE_PER_CLASS strategy to check difference between strategies. TABLE_PER_CLASS - every subclass create table with
+ * with all columns from abstract class for each table
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "accessory")
+@Entity(name = "accessory")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Accessory {
 
     @Id
@@ -25,6 +29,6 @@ public class Accessory {
     private String model;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="device_id", nullable = false)
+    @JoinColumn(name = "device_id", nullable = false)
     private Device device;
 }

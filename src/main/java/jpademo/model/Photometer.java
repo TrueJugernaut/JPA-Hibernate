@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Photometer extends Device{
+@Entity(name = "photometr_device")
+public class Photometer extends Device {
 
     @Column(name = "type_of_liquid")
     private String liqType;
