@@ -32,7 +32,6 @@ public class Main {
         patient.setName("Петя Poroshenko");
         patient.setDateOfBirth(new Date(1972, 12, 12));
 
-
         System.out.println(patientDao.findById(3L).toString());
 //        patientDao.insert(patient);
 

@@ -1,9 +1,6 @@
 package jpademo.dao;
 
-import org.hibernate.Session;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,6 +18,15 @@ public class AbstractDao<T, ID extends Serializable> implements CrudDao<T, ID> {
         this.aClass = aClass;
     }
 
+    @Override
+    public List<T> findAll() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(aClass);
+        Root<T> rootEntry = cq.from(aClass);
+        CriteriaQuery<T> all = cq.select(rootEntry);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        return allQuery.getResultList();
+    }
 
     @Override
     public T findById(ID id) {

@@ -1,7 +1,6 @@
 package jpademo.dao.impl;
 
 import jpademo.dao.AbstractDao;
-import jpademo.dao.CrudDao;
 import jpademo.dao.TestDao;
 import jpademo.model.Test;
 
