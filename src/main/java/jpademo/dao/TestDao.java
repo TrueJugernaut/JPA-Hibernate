@@ -1,4 +1,6 @@
 package jpademo.dao;
 
-public interface TestDao extends CrudDao<TestDao, Long>{
+import jpademo.model.Test;
+
+public interface TestDao extends CrudDao<Test, Long>{
 }

@@ -9,41 +9,49 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Main {
 
-//    @PersistenceContext
+    @PersistenceContext
     private static EntityManager entityManager;
 
     public static EntityManager getEntityManager() {
         return entityManager;
     }
 
-//    PatientDao patientDao = new PatientDaoImpl(entityManager, Patient);
     public static void main(String[] args) {
+
+
         EntityManagerFactory entityManagerFactory = Persistence
                 .createEntityManagerFactory("persistence");
         entityManager = entityManagerFactory.createEntityManager();
+
         Patient patient = new Patient();
-        savePatient(patient);
-        getPatient(1L);
-
-    }
-
-
-//    PatientDaoImpl patientDao;
-
-    public static void savePatient(Patient patient) {
-        patient.setName("Petro Poroshenko");
+        PatientDao patientDao = new PatientDaoImpl(entityManager);
+        patient.setName("Петя Poroshenko");
         patient.setDateOfBirth(new Date(1972, 12, 12));
-    }
-    public static Patient getPatient(long patientId) {
 
-        return null;
-    }
 
-    public static void removePatient(Long patientId) {
+        System.out.println(patientDao.findById(3L).toString());
+//        patientDao.insert(patient);
 
+        final List<Patient> all = patientDao.findAll();
+
+        for (Patient patient1 : all) {
+            System.out.println(patient1.toString());
+        }
+
+//        entityManager.getTransaction().begin();
+//        patient.setName("Petro Poroshenko");
+//        patient.setDateOfBirth(new Date(1972, 12, 12));
+//        entityManager.persist(patient);
+//        entityManager.getTransaction().commit();
+//        entityManager.close();
+//
+//        List<Patient> all = patientDao.findAll();
+//        System.out.println(all);
+//
+//        entityManagerFactory.close();
     }
 }

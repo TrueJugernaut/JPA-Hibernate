@@ -2,5 +2,8 @@ package jpademo.dao;
 
 import jpademo.model.Patient;
 
-public interface PatientDao extends CrudDao<Patient, Long>{
+import java.util.List;
+
+public interface PatientDao extends CrudDao<Patient, Long> {
+    List<Patient> findAll();
 }
