@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 public class PatientDaoImpl extends AbstractDao<Patient, Long> implements PatientDao {
 
-    public PatientDaoImpl(EntityManager entityManager, Class<Patient> aClass) {
-        super(entityManager, aClass);
+    public PatientDaoImpl(EntityManager entityManager) {
+        super(entityManager, Patient.class);
     }
 }
