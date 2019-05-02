@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ultrasonic_device")
+@Entity
+@Table(name = "ultrasonic_device")
 public class UltrasonicDevice extends Device {
 
     @Column(name = "frequency")

@@ -11,7 +11,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "patient")
+@Entity
+@Table(name = "patient")
 public class Patient {
 
     //IDENTITY generation type

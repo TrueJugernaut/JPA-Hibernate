@@ -14,7 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "devices")
+@Entity
+@Table(name = "devices")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Device {
 

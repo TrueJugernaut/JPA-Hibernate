@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "accessory")
+@Entity
+@Table(name = "accessory")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Accessory {
 

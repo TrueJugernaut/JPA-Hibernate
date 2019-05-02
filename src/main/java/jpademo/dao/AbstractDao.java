@@ -19,13 +19,21 @@ public class AbstractDao<T, ID extends Serializable> implements CrudDao<T, ID> {
     }
 
     @Override
-    public List<T> findAll() {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(aClass);
-        Root<T> rootEntry = cq.from(aClass);
-        CriteriaQuery<T> all = cq.select(rootEntry);
+    public List<T> criteriaBuilderFindAll() {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(aClass);
+        Root<T> rootEntry = query.from(aClass);
+        CriteriaQuery<T> all = query.select(rootEntry);
         TypedQuery<T> allQuery = entityManager.createQuery(all);
         return allQuery.getResultList();
+    }
+
+    @Override
+    public List<T> findAll() {
+        entityManager.getTransaction().begin();
+        List<T> tList = entityManager.createQuery("select a from " + aClass.getSimpleName() + " a").getResultList();
+        entityManager.getTransaction().commit();
+        return tList;
     }
 
     @Override

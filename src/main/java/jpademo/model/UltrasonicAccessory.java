@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ultrasonic_accessory")
+@Entity
+@Table(name = "ultrasonic_accessory")
 public class UltrasonicAccessory extends Accessory {
 
     @Column(name = "radius")

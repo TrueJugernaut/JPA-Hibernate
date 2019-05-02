@@ -14,7 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "test")
+@Entity
+@Table(name = "test")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Test {
 

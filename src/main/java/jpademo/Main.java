@@ -1,56 +1,27 @@
 package jpademo;
 
-import jpademo.dao.PatientDao;
-import jpademo.dao.impl.PatientDaoImpl;
 import jpademo.model.Patient;
+import jpademo.service.AccessoryService;
+import jpademo.service.DeviceService;
+import jpademo.service.PatientService;
+import jpademo.service.TestService;
+import jpademo.service.factory.SessionFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
 
-    @PersistenceContext
-    private static EntityManager entityManager;
-
-    public static EntityManager getEntityManager() {
-        return entityManager;
-    }
-
     public static void main(String[] args) {
 
+        PatientService patientService = SessionFactory.getPatientService();
+        DeviceService deviceService = SessionFactory.getDeviseService();
+        TestService testService = SessionFactory.getTestService();
+        AccessoryService accessoryService = SessionFactory.getAccessoeyService();
 
-        EntityManagerFactory entityManagerFactory = Persistence
-                .createEntityManagerFactory("persistence");
-        entityManager = entityManagerFactory.createEntityManager();
+        final List<Patient> all = patientService.findAll();
 
-        Patient patient = new Patient();
-        PatientDao patientDao = new PatientDaoImpl(entityManager);
-        patient.setName("Петя Poroshenko");
-        patient.setDateOfBirth(new Date(1972, 12, 12));
-
-        System.out.println(patientDao.findById(3L).toString());
-//        patientDao.insert(patient);
-
-        final List<Patient> all = patientDao.findAll();
-
-        for (Patient patient1 : all) {
-            System.out.println(patient1.toString());
+        for (Patient patient2 : all) {
+            System.out.println(patient2.toString());
         }
-
-//        entityManager.getTransaction().begin();
-//        patient.setName("Petro Poroshenko");
-//        patient.setDateOfBirth(new Date(1972, 12, 12));
-//        entityManager.persist(patient);
-//        entityManager.getTransaction().commit();
-//        entityManager.close();
-//
-//        List<Patient> all = patientDao.findAll();
-//        System.out.println(all);
-//
-//        entityManagerFactory.close();
     }
 }
