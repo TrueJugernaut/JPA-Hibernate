@@ -1,7 +1,9 @@
 package jpademo.service.impl;
 
 import jpademo.dao.DeviceDao;
-import jpademo.model.*;
+import jpademo.model.Device;
+import jpademo.model.Patient;
+import jpademo.model.Test;
 import jpademo.service.DeviceService;
 
 import java.time.LocalDate;

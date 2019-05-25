@@ -1,6 +1,8 @@
 package jpademo.service;
 
-import jpademo.model.*;
+import jpademo.model.Device;
+import jpademo.model.Patient;
+import jpademo.model.Test;
 
 import java.util.List;
 
