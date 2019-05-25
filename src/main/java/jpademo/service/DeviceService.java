@@ -1,6 +1,6 @@
 package jpademo.service;
 
-import jpademo.model.Device;
+import jpademo.model.*;
 
 import java.util.List;
 
@@ -15,4 +15,6 @@ public interface DeviceService {
     Device update(Device device);
 
     void delete(Device device);
+
+    void doTest(Patient patient, Test Test);
 }

@@ -1,18 +1,22 @@
 package jpademo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "patient")
+@Entity
 public class Patient {
 
     //IDENTITY generation type
@@ -25,9 +29,18 @@ public class Patient {
     private String name;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dateOfBirth;
 
     @OneToMany(mappedBy = "patient",
             cascade = CascadeType.ALL)
     private List<Test> tests;
+
+    public void doTest(Test test) {
+        if (tests == null) {
+            tests = new ArrayList<>();
+        }
+        test.setPatient(this);
+        tests.add(test);
+    }
 }

@@ -9,13 +9,14 @@ import javax.persistence.*;
 /*
  * Use TABLE_PER_CLASS strategy to check difference between strategies. TABLE_PER_CLASS - every subclass create table with
  * with all columns from abstract class for each table
+ * it's not ok to use this type here, but I'm to lazy to fix
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "accessory")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Entity
 public class Accessory {
 
     @Id

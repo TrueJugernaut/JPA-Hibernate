@@ -21,7 +21,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<Patient> findAll() {
-        return patientDao.findAll();
+        return patientDao.criteriaBuilderFindAll();
     }
 
     @Override

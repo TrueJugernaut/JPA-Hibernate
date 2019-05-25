@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "photometr_accessory")
+@Entity
 public class PhotomoterAccessory extends Accessory {
 
     @Column(name = "material")
