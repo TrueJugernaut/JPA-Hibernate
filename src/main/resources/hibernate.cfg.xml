@@ -32,6 +32,9 @@
         <mapping class="jpademo.model.SkinTest"/>
         <mapping class="jpademo.model.Accessory"/>
         <mapping class="jpademo.model.Test"/>
+        <mapping class="developerapp.model.intelligence.LevelA"/>
+        <mapping class="developerapp.model.intelligence.LevelB"/>
+        <mapping class="developerapp.model.intelligence.Tag"/>
 
     </session-factory>
 </hibernate-configuration>
