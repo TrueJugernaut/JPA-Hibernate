@@ -7,6 +7,8 @@ public interface CrudDao<T, ID extends Serializable> {
 
     T findById(ID id);
 
+    List<T> criteriaBuilderFindAll();
+
     List<T> findAll();
 
     T insert(T t);
