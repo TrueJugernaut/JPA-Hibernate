@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("2")
 @Entity
 public class BloodTest extends Test {
 

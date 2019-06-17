@@ -1,7 +1,10 @@
 package jpademo.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,6 +18,23 @@ public class AbstractDao<T, ID extends Serializable> implements CrudDao<T, ID> {
         this.aClass = aClass;
     }
 
+    @Override
+    public List<T> criteriaBuilderFindAll() {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(aClass);
+        Root<T> rootEntry = query.from(aClass);
+        CriteriaQuery<T> all = query.select(rootEntry);
+        TypedQuery<T> allQuery = entityManager.createQuery(all);
+        return allQuery.getResultList();
+    }
+
+    @Override
+    public List<T> findAll() {
+        entityManager.getTransaction().begin();
+        List<T> tList = entityManager.createQuery("select a from " + aClass.getSimpleName() + " a").getResultList();
+        entityManager.getTransaction().commit();
+        return tList;
+    }
 
     @Override
     public T findById(ID id) {
@@ -25,19 +45,12 @@ public class AbstractDao<T, ID extends Serializable> implements CrudDao<T, ID> {
     }
 
     @Override
-    public List<T> findAll() {
-        Query query = entityManager.createQuery("SELECT t FROM T t");
-        return (List<T>) query.getResultList();
-    }
-
-    @Override
     public T insert(T t) {
         entityManager.getTransaction().begin();
         entityManager.persist(t);
         entityManager.getTransaction().commit();
         return findById((ID) entityManager
-                .createQuery("select max (e.id) from " + aClass.getSimpleName() + " e").getSingleResult());
-
+                .createQuery("select max(e.id) as id from " + aClass.getSimpleName() + " e").getSingleResult());
     }
 
     @Override

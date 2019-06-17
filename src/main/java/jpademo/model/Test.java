@@ -1,31 +1,42 @@
 package jpademo.model;
 
-import javax.persistence.*;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+import javax.persistence.*;
+import java.time.LocalDate;
+
+/*
+ * Use SINGLE_TABLE strategy to check difference between strategies. SINGLE_TABLE - store all fields from all subclasses
+ * in one table.
+ */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "test")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="test_type", discriminatorType = DiscriminatorType.INTEGER)
+@Entity
 public class Test {
 
+    //TABLE generation type
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @TableGenerator(name = "test_generator", table = "hibernate_sequence", schema = "hospital")
     @Column(name = "test_id")
     private Long testId;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "test_date")
-    private String testDate;
+    private LocalDate testDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "devices_tests",
-            joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "device_id")})
-    private List<Device> devices;
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "device_id", nullable = false)
+    private Device device;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
-
 }

@@ -7,30 +7,18 @@
     <groupId>mate.academy</groupId>
     <artifactId>jpa.hibernate</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -46,6 +34,12 @@
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -66,5 +60,3 @@
 
     </dependencies>
 </project>
-
-<!--heroku war:deploy target/jpa.hibernate-1.0-SNAPSHOT.war &#45;&#45;app-->
