@@ -1,49 +1,40 @@
 package jpademo;
 
-import jpademo.dao.PatientDao;
-import jpademo.dao.impl.PatientDaoImpl;
 import jpademo.model.Patient;
+import jpademo.service.AccessoryService;
+import jpademo.service.DeviceService;
+import jpademo.service.PatientService;
+import jpademo.service.TestService;
+import jpademo.service.factory.SessionFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
-//    @PersistenceContext
-    private static EntityManager entityManager;
-
-    public static EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-//    PatientDao patientDao = new PatientDaoImpl(entityManager, Patient);
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence
-                .createEntityManagerFactory("persistence");
-        entityManager = entityManagerFactory.createEntityManager();
-        Patient patient = new Patient();
-        savePatient(patient);
-        getPatient(1L);
 
-    }
+        PatientService patientService = SessionFactory.getPatientService();
+        DeviceService deviceService = SessionFactory.getDeviseService();
+        TestService testService = SessionFactory.getTestService();
+        AccessoryService accessoryService = SessionFactory.getAccessoeyService();
 
+        //Create new patient
+        Patient patient = Patient.builder()
+                .name("Nesterov Yehor")
+                .dateOfBirth(LocalDate.of(1984, 12, 29))
+                .build();
+        patientService.insert(patient);
 
-//    PatientDaoImpl patientDao;
+        final List<Patient> all = patientService.findAll();
 
-    public static void savePatient(Patient patient) {
-        patient.setName("Petro Poroshenko");
-        patient.setDateOfBirth(new Date(1972, 12, 12));
-    }
-    public static Patient getPatient(long patientId) {
+        for (Patient patient2 : all) {
+            System.out.println(patient2.toString());
+        }
 
-        return null;
-    }
-
-    public static void removePatient(Long patientId) {
-
+        testService.findAll();
+        Patient patient1 = patientService.findById(1L);
+        System.out.println(patient1.toString());
+        System.out.println(patient1.getTests());
     }
 }

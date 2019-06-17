@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "photometr_device")
 @Entity
-public class Photometer extends Device{
+public class Photometer extends Device {
 
     @Column(name = "type_of_liquid")
     private String liqType;
