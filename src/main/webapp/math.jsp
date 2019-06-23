@@ -12,9 +12,16 @@
 </head>
 <body>
 
-<div style="display: flex; flex-direction: row; justify-content: center">
-    <h1>Result is:</h1>
+<div style="display: flex; flex-direction: column; justify-content: center">
+    <h1>Result of division 59 •/• 892.21 is:</h1>
     <h1>${name}</h1>
+    <div>-------------------</div>
+    <div>-------------------</div>
+    <div>-------------------</div>
+    <div>-------------------</div>
+    <div>-------------------</div>
+    <div>-------------------</div>
+    <div>file input test... in progress</div>
     <form>
         <input type="file" name="file input" title="choose file">
     </form>

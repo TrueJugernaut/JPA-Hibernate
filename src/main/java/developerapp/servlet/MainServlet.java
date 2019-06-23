@@ -13,7 +13,8 @@ public class MainServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println("<h1>Hello world, server have started</h1>" +
                 "</br>" +
-                "<a href=\"http://localhost:8060/JPA_Hibernate_war_exploded/jsp\">go to jsp template page</a>");
+                "<button><a href=\"https://shielded-journey-87346.herokuapp.com/jsp\">go to jsp template page</a></button>" +
+                "<button><a href=\"https://shielded-journey-87346.herokuapp.com/pidor\">go to jsp template page</a></button>");
     }
 
     @Override
