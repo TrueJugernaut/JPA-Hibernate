@@ -13,10 +13,8 @@ public class PidorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         JspServlet servlet = new JspServlet();
-//        String cssTag="<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/style.css\">";
 
         req.setAttribute("name", servlet.division(59, 892.21));
-//        req.setAttribute("style", cssTag);
-        req.getRequestDispatcher("category-b.jsp").forward(req, resp);
+        req.getRequestDispatcher("pidor-page.html").forward(req, resp);
     }
 }

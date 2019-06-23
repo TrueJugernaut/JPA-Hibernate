@@ -5,7 +5,7 @@ import jpademo.service.AccessoryService;
 import jpademo.service.DeviceService;
 import jpademo.service.PatientService;
 import jpademo.service.TestService;
-import jpademo.service.factory.SessionFactory;
+import jpademo.util.factory.SessionFactory;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Main {
         PatientService patientService = SessionFactory.getPatientService();
         DeviceService deviceService = SessionFactory.getDeviseService();
         TestService testService = SessionFactory.getTestService();
-        AccessoryService accessoryService = SessionFactory.getAccessoeyService();
+        AccessoryService accessoryService = SessionFactory.getAccessoryService();
 
         //Create new patient
         Patient patient = Patient.builder()
@@ -28,13 +28,13 @@ public class Main {
 
         final List<Patient> all = patientService.findAll();
 
-        for (Patient patient2 : all) {
-            System.out.println(patient2.toString());
-        }
+//        for (Patient patient2 : all) {
+//            System.out.println(patient2.toString());
+//        }
 
         testService.findAll();
         Patient patient1 = patientService.findById(1L);
-        System.out.println(patient1.toString());
-        System.out.println(patient1.getTests());
+//        System.out.println(patient1.toString());
+//        System.out.println(patient1.getTests());
     }
 }
